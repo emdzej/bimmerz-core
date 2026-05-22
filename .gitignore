@@ -5,6 +5,9 @@ dist/
 **/dist/
 .DS_Store
 
+# TypeScript incremental build state
+*.tsbuildinfo
+
 # Turborepo
 .turbo
 
