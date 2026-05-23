@@ -107,6 +107,41 @@ export interface Logger {
 }
 
 /**
+ * Metadata describing one logger category. Libraries export an array
+ * of these so consuming apps (web Settings dialogs, CLI help text)
+ * can iterate the categories without hardcoding names:
+ *
+ * ```ts
+ * // In a library
+ * import type { LogCategory } from '@emdzej/bimmerz-logger';
+ *
+ * export const LOG_CATEGORIES = [
+ *   { name: 'EDIABASX', hint: 'Catch-all — covers every subtree.' },
+ *   { name: 'EDIABASX.ediabas', hint: 'SGBD load / job dispatch.' },
+ * ] as const satisfies readonly LogCategory[];
+ *
+ * // In a consuming app
+ * import { LOG_CATEGORIES as ediabasxCats } from '@emdzej/ediabasx-ediabas';
+ * import { LOG_CATEGORIES as inpaxCats } from '@emdzej/inpax-interpreter';
+ * const all = [...ediabasxCats, ...inpaxCats];
+ * ```
+ *
+ * No runtime registry — composition is explicit at import time. Apps
+ * that don't import a library don't see its categories (which is
+ * correct — there's no point offering controls for code that isn't
+ * loaded).
+ */
+export interface LogCategory {
+  /** Dot-separated category path. Same format `getLogger()` accepts. */
+  name: string;
+  /**
+   * One-line human-readable description of what this category covers.
+   * Surfaced as a tooltip / sublabel in Settings UIs.
+   */
+  hint?: string;
+}
+
+/**
  * Central logger configuration. Apply via `configureLogger()`; the
  * call is sticky and merges with the existing config. All loggers
  * — including those handed out before the call — pick up the

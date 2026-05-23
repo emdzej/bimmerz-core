@@ -1,6 +1,6 @@
 {
   "name": "@emdzej/bimmerz-logger",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Shared structured logger for the bimmerz family — pino-shape API, hierarchical categories, runtime-mutable config, pluggable sinks. No env reads, isomorphic (Node + browser), tree-shake-friendly.",
   "main": "dist/index.js",

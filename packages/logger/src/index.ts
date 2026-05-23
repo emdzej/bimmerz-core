@@ -29,6 +29,7 @@ export { nullSink } from './sinks/null.js';
 
 export type {
   LogBindings,
+  LogCategory,
   LogLevel,
   LogRecord,
   Logger,
