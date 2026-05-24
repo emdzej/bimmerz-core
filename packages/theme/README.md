@@ -1,9 +1,9 @@
 # @emdzej/bimmerz-theme
 
-Shared Tailwind preset + CSS variables for the bimmerz app family. Defines the
-`bg-base` / `bg-surface` / `bg-elevated` / `text-foreground` / `text-muted` /
-`text-faint` / `border-divider` / `border-rule` semantic token system every app
-already uses. Each app picks its own `accent` colour.
+Shared Tailwind preset + CSS variables for the bimmerz app family. Two layers
+stack together — semantic light/dark theme tokens (`bg-base` / `bg-surface` /
+`text-foreground` / `text-muted`…), and the BMW M-division identity palette
+(`m-light` / `m-dark` / `m-red`) that drives the brand visuals.
 
 ## Wire it in (consumer app)
 
@@ -40,6 +40,70 @@ applyTheme("system"); // or whatever the user has saved
 watchSystemTheme(() => applyTheme("system"));
 ```
 
+## What you get
+
+### Semantic theme tokens
+
+Light/dark via the `dark` class on `<html>`. Slate-tinted neutrals matching the
+hub.bimmerz.app + bimmerz.app site palettes.
+
+| Tailwind class | Purpose |
+|---|---|
+| `bg-base` | page background |
+| `bg-surface` | raised cards / panels |
+| `bg-elevated` | one step further up the stack |
+| `text-foreground` | primary text |
+| `text-muted` | secondary text (labels, captions) |
+| `text-faint` | tertiary text (timestamps, hints) |
+| `border-divider` | subtle rule between rows |
+| `border-rule` | stronger separator between sections |
+
+### M-division identity palette
+
+Same in both themes — these are brand colours, not theme colours.
+
+| Tailwind class | Hex |
+|---|---|
+| `bg-m-light` / `text-m-light` / `border-m-light` | `#1c69d4` |
+| `bg-m-dark` / `text-m-dark` / `border-m-dark` | `#002664` |
+| `bg-m-red` / `text-m-red` / `border-m-red` | `#c41e3a` |
+
+### M-stripe
+
+The three-band signature bar BMW M cars carry on their kidney grilles.
+Available two ways:
+
+```svelte
+<!-- via the Svelte component -->
+<script>import { MStripe } from "@emdzej/bimmerz-ui";</script>
+<MStripe class="h-1" />
+```
+
+```html
+<!-- or as raw HTML / CSS (Tailwind not required) -->
+<div class="m-stripe" aria-hidden="true">
+  <div class="m-stripe__band m-stripe__band--light"></div>
+  <div class="m-stripe__band m-stripe__band--dark"></div>
+  <div class="m-stripe__band m-stripe__band--red"></div>
+</div>
+```
+
+### M-gradient
+
+Canonical brand gradient (light → dark → red, 135°). Two flavours:
+
+```svelte
+<!-- text fill — paint a wordmark in the M signature -->
+<h1 class="m-gradient-text">bimmerz</h1>
+
+<!-- background fill — use `bg-m-gradient` from the Tailwind preset -->
+<div class="bg-m-gradient" />
+```
+
+Text fill needs `background-clip: text` which doesn't survive arbitrary
+Tailwind composition, so it ships as the `.m-gradient-text` class in
+`tokens.css` rather than as a preset utility.
+
 ## JS API
 
 ```ts
@@ -49,13 +113,3 @@ import { applyTheme, isDarkTheme, watchSystemTheme, type ThemeChoice } from "@em
 - `applyTheme(choice)` — toggle the `dark` class on `<html>`.
 - `isDarkTheme(choice)` — resolve `"system"` against `prefers-color-scheme`.
 - `watchSystemTheme(onChange)` — listen for OS-preference changes.
-
-## Why a shared preset
-
-Every bimmerz app converged on the same colour tokens independently — there's
-no reason for each to redefine them. Centralising in one preset means a
-palette change ripples to all consumers via a single dependency bump.
-
-Accent stays per-app on purpose: ncsx (blue-600), inpax (blue-500), ediabasx
-(cyan-500), xbusx (TBD) — distinct accents make the app you're in
-recognisable at a glance.

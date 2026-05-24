@@ -13,3 +13,4 @@
  */
 
 export { default as Brand } from "./Brand.svelte";
+export { default as MStripe } from "./MStripe.svelte";

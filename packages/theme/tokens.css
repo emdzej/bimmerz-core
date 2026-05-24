@@ -1,39 +1,61 @@
 /**
- * Shared CSS variables for the bimmerz Tailwind preset — same zinc-based
- * palette every app in the family uses. Drop into an app's `app.css`
- * via:
+ * Shared CSS variables for the bimmerz Tailwind preset. Two layers
+ * stacked together:
+ *
+ *   1. The BMW M-division identity palette — `--m-light` /
+ *      `--m-dark` / `--m-red` — used for brand accents, the M-stripe
+ *      page-top signature, and the canonical hero-text gradient.
+ *      These are identity colours, NOT theme colours: they don't
+ *      change between light and dark. Match the hub.bimmerz.app and
+ *      bimmerz.app site palettes verbatim.
+ *
+ *   2. Slate-tinted neutrals for the light / dark theme themselves.
+ *      Light is the `:root` baseline; dark is layered onto the
+ *      `.dark` class on `<html>`. `applyTheme()` from the JS API
+ *      toggles that class.
+ *
+ * Drop into an app's `app.css` via:
  *
  *   @tailwind base;
  *   @tailwind components;
  *   @tailwind utilities;
  *   @import "@emdzej/bimmerz-theme/tokens.css";
- *
- * Light theme is the `:root` baseline; dark theme is layered onto the
- * `.dark` class on `<html>`. `applyTheme()` from the JS API toggles
- * that class based on the user's preference.
  */
 
 @layer base {
   :root {
-    --theme-bg: 255 255 255;
-    --theme-surface: 244 244 245;
-    --theme-elevated: 228 228 231;
-    --theme-border-strong: 212 212 216;
-    --theme-border-subtle: 228 228 231;
-    --theme-text-primary: 24 24 27;
-    --theme-text-secondary: 63 63 70;
-    --theme-text-muted: 113 113 122;
+    /* Identity — BMW M three-stripe palette (light blue / dark blue /
+     * red). Same in both themes. */
+    --m-light: 28 105 212;
+    --m-dark: 0 38 100;
+    --m-red: 196 30 58;
+
+    /* Light theme — slate-tinted near-white background with the
+     * cards a touch brighter and the page a touch warmer than the
+     * cards. Matches hub.bimmerz.app's foreground/background. */
+    --theme-bg: 247 248 251;
+    --theme-surface: 255 255 255;
+    --theme-elevated: 238 241 246;
+    --theme-border-strong: 203 213 225;
+    --theme-border-subtle: 226 232 240;
+    --theme-text-primary: 15 23 42;
+    --theme-text-secondary: 71 85 105;
+    --theme-text-muted: 148 163 184;
   }
 
   .dark {
-    --theme-bg: 9 9 11;
-    --theme-surface: 24 24 27;
-    --theme-elevated: 39 39 42;
-    --theme-border-strong: 39 39 42;
-    --theme-border-subtle: 39 39 42;
-    --theme-text-primary: 244 244 245;
-    --theme-text-secondary: 212 212 216;
-    --theme-text-muted: 113 113 122;
+    /* Dark theme — deep navy with a barely-perceptible blue cast so
+     * the M-palette accents (which sit on this background) feel
+     * native rather than imported. Matches hub.bimmerz.app's dark
+     * tokens. */
+    --theme-bg: 11 16 32;
+    --theme-surface: 19 26 46;
+    --theme-elevated: 26 35 66;
+    --theme-border-strong: 46 58 87;
+    --theme-border-subtle: 31 42 68;
+    --theme-text-primary: 226 232 240;
+    --theme-text-secondary: 148 163 184;
+    --theme-text-muted: 100 116 139;
   }
 
   *::-webkit-scrollbar {
@@ -55,4 +77,64 @@
     background: rgb(var(--theme-bg));
     color: rgb(var(--theme-text-primary));
   }
+}
+
+/**
+ * M-stripe — the three-band horizontal bar BMW M cars carry on the
+ * kidney grille and side skirts, and the visual signature
+ * bimmerz.app + the hub use pinned to the top of every page.
+ *
+ * Usage:
+ *
+ *   <div class="m-stripe" aria-hidden="true">
+ *     <div class="m-stripe__band m-stripe__band--light"></div>
+ *     <div class="m-stripe__band m-stripe__band--dark"></div>
+ *     <div class="m-stripe__band m-stripe__band--red"></div>
+ *   </div>
+ *
+ * Or, via the Svelte component shipped from `@emdzej/bimmerz-ui`:
+ *
+ *   <script>import { MStripe } from "@emdzej/bimmerz-ui";</script>
+ *   <MStripe />
+ */
+.m-stripe {
+  display: flex;
+  height: 4px;
+  width: 100%;
+}
+.m-stripe__band {
+  flex: 1;
+}
+.m-stripe__band--light {
+  background: rgb(var(--m-light));
+}
+.m-stripe__band--dark {
+  background: rgb(var(--m-dark));
+}
+.m-stripe__band--red {
+  background: rgb(var(--m-red));
+}
+
+/**
+ * `m-gradient-text` — paint text with the canonical bimmerz brand
+ * gradient (light blue → dark blue → red, 135°). Same treatment the
+ * hub's "bimmerz" wordmark and bimmerz.app's hero name use.
+ *
+ * Apply to any text element to mark it as the brand:
+ *
+ *   <h1 class="m-gradient-text">bimmerz</h1>
+ *
+ * Works on `<span>` inside larger text too — wrap just the bit you
+ * want gradiented.
+ */
+.m-gradient-text {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--m-light)) 0%,
+    rgb(var(--m-dark)) 55%,
+    rgb(var(--m-red)) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
