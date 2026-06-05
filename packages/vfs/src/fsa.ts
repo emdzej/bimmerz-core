@@ -3,7 +3,6 @@ import type { VirtualFile, VirtualDirectory, VirtualEntry } from './types.js';
 export class FsaFile implements VirtualFile {
   readonly name: string;
   readonly size: number;
-  readonly #handle: FileSystemFileHandle;
   // Cache the File object obtained during construction so arrayBuffer()
   // doesn't need a second getFile() round-trip.
   readonly #file: File;
@@ -11,7 +10,6 @@ export class FsaFile implements VirtualFile {
   constructor(handle: FileSystemFileHandle, file: File) {
     this.name = handle.name;
     this.size = file.size;
-    this.#handle = handle;
     this.#file = file;
   }
 

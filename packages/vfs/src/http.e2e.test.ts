@@ -15,7 +15,9 @@ import { drillPath, listFiles } from './utils.js';
 // Fixture tree — mirrors a minimal BMW INPA install
 // ---------------------------------------------------------------------------
 
-type FixtureTree = Record<string, FixtureTree | Uint8Array | string>;
+interface FixtureTree {
+  [key: string]: FixtureTree | Uint8Array | string;
+}
 
 const MS43_IPO = new Uint8Array([0x49, 0x50, 0x4f, 0x01, 0x02]);
 const RADIO_IPO = new Uint8Array([0x52, 0x41, 0x44, 0x03]);

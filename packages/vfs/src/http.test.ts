@@ -18,8 +18,7 @@ function makeFetch(
     if (value === undefined) {
       return new Response(null, { status: 404, statusText: 'Not Found' });
     }
-    const body = typeof value === 'string' ? value : value;
-    return new Response(body, { status: 200 });
+    return new Response(value as BodyInit, { status: 200 });
   };
 }
 
