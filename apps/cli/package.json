@@ -1,0 +1,33 @@
+{
+  "name": "@emdzej/bimmerz-cli",
+  "version": "0.1.0",
+  "description": "bimmerz CLI — bundle and index BMW INPA/EDIABAS/NCS installs for web tools.",
+  "type": "module",
+  "bin": {
+    "bimmerz": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist .turbo *.tsbuildinfo",
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "@emdzej/bimmerz-ignore": "workspace:*",
+    "@emdzej/bimmerz-logger": "workspace:*",
+    "chalk": "^5.3.0",
+    "commander": "^12.0.0",
+    "fflate": "^0.8.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emdzej/bimmerz.git",
+    "directory": "apps/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
