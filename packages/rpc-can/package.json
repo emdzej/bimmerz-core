@@ -1,0 +1,40 @@
+{
+  "name": "@emdzej/bimmerz-rpc-can",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Typed client for the bimmerz-box dongle's /rpc/can/<n> endpoint. Classical CAN frames, no FD. Built on @emdzej/bimmerz-rpc-core.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "clean": "rm -rf dist .turbo *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@emdzej/bimmerz-rpc-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "typescript": "^5.7.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emdzej/bimmerz.git",
+    "directory": "packages/rpc-can"
+  }
+}

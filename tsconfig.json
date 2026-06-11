@@ -6,6 +6,9 @@
     { "path": "./packages/ui" },
     { "path": "./packages/ignore" },
     { "path": "./packages/vfs" },
+    { "path": "./packages/rpc-core" },
+    { "path": "./packages/rpc-uart" },
+    { "path": "./packages/rpc-can" },
     { "path": "./apps/cli" }
   ]
 }
