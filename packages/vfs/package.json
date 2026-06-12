@@ -1,8 +1,8 @@
 {
   "name": "@emdzej/bimmerz-vfs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Read-only virtual file system abstraction for bimmerz tools — same interface over local File System Access API and remote HTTP index.json trees.",
+  "description": "Read-only virtual file system abstraction for bimmerz tools — same interface over local File System Access API, remote HTTP index.json trees, and an OPFS / IndexedDB cache layer for the HTTP backend.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
