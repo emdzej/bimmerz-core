@@ -14,3 +14,13 @@
 
 export { default as Brand } from "./Brand.svelte";
 export { default as MStripe } from "./MStripe.svelte";
+
+/* Embedded-mode lifecycle hook — shared across every dongle-hosted
+   app (dashx / ediabasx / inpax / ncsx). Browser builds keep the
+   manual Connect button; embedded builds wire this hook into
+   App.svelte to auto-connect on mount + auto-disconnect on
+   beforeunload + auto-reconnect with backoff on transient drops. */
+export {
+  useEmbeddedAutoConnect,
+  type AutoConnectOptions,
+} from "./useEmbeddedAutoConnect.svelte.js";

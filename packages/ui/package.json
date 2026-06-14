@@ -1,8 +1,8 @@
 {
   "name": "@emdzej/bimmerz-ui",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
-  "description": "Shared Svelte 5 components for the bimmerz app family — About dialog, Settings scaffolding, Connect button, brand wordmark, install picker. Source-only — consumer apps' Vite compiles them.",
+  "description": "Shared Svelte 5 components + lifecycle hooks for the bimmerz app family — brand wordmark, M-stripe, embedded-mode auto-connect hook. Source-only — consumer apps' Vite compiles them.",
   "svelte": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
