@@ -1,5 +1,21 @@
 # @emdzej/bimmerz-vfs
 
+> **Superseded by [csfs](https://github.com/emdzej/csfs).** `@emdzej/csfs-*` does
+> everything this does and more — byte-range reads, zip archives read in place,
+> a writable OPFS backend, `node:fs` for tooling — and it is MIT where this is
+> PolyForm Noncommercial, which has already cost real work in GPL consumers.
+>
+> csfs 0.2.0 closed the four gaps that were blocking the move:
+> case-insensitive HTTP lookups, lookups answering with the name as *stored*
+> rather than as asked for, a readable tree on a host that ignores `Range`, and
+> symlinks surviving a listing.
+>
+> New code should use csfs. Describe a tree with `bimmerz data manifest`
+> (one flat `csfs-manifest.json`) rather than `bimmerz data index` (one
+> `index.json` per directory). This package stays until inpax, ncsx, nfsx and
+> dashx have moved; see `notes/vfs-to-csfs-migration-eval.md` for the plan and
+> the per-app translation table.
+
 Read-only virtual file system for bimmerz tools — one interface, two backends:
 
 | Backend | Class | Source |

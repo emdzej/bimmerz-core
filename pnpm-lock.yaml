@@ -41,6 +41,12 @@ importers:
       '@emdzej/bimmerz-logger':
         specifier: workspace:*
         version: link:../../packages/logger
+      '@emdzej/csfs-manifest':
+        specifier: ^0.2.0
+        version: 0.2.0
+      '@emdzej/csfs-node':
+        specifier: ^0.2.0
+        version: 0.2.0
       chalk:
         specifier: ^5.3.0
         version: 5.6.2
@@ -166,6 +172,15 @@ packages:
   '@alloc/quick-lru@5.2.0':
     resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
     engines: {node: '>=10'}
+
+  '@emdzej/csfs-core@0.2.0':
+    resolution: {integrity: sha512-rL5mwhjVRQg4XAa7p71hdt4SHIfGQ/mE+8mGtUCl6l4gVTDwcdzXlWHW1s0Zl81RfUnL214LxA48FzH4MI0ZEg==}
+
+  '@emdzej/csfs-manifest@0.2.0':
+    resolution: {integrity: sha512-9TLRqryT2Fkmaz/4GLx5Hyb7YaknUzaC+mhhzrzz7nbBjzBrPh5ohXSqw0u80j0ye+DCd4831SbBp2nACjQiXw==}
+
+  '@emdzej/csfs-node@0.2.0':
+    resolution: {integrity: sha512-K493yQbO6FbU+maAQQke0ctbjHVZZ32F5lrzgitFKG+RbkS4x/0OX05GOclaPcwYysmaTbokPspY2sVO7ZuOZg==}
 
   '@esbuild/aix-ppc64@0.21.5':
     resolution: {integrity: sha512-1SDgH6ZSPTlggy1yI6+Dbkiz8xzpHJEVAlF/AM1tHPLsf5STom9rwtjE4hKAF20FfXXNTFqEYXyJNWh1GiZedQ==}
@@ -1604,6 +1619,16 @@ packages:
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
+
+  '@emdzej/csfs-core@0.2.0': {}
+
+  '@emdzej/csfs-manifest@0.2.0':
+    dependencies:
+      '@emdzej/csfs-core': 0.2.0
+
+  '@emdzej/csfs-node@0.2.0':
+    dependencies:
+      '@emdzej/csfs-core': 0.2.0
 
   '@esbuild/aix-ppc64@0.21.5':
     optional: true

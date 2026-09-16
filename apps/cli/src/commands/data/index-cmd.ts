@@ -11,6 +11,13 @@
  * Ignore semantics: gitignore-style via the `ignore` package, same as
  * `bundle`. Auto-discovers `<dir>/.bimmerzignore` or honours `-i <file>`.
  * `index.json` and `.bimmerzignore` themselves are never listed.
+ *
+ * SUPERSEDED by `bimmerz data manifest`, which writes one flat
+ * `csfs-manifest.json` for `@emdzej/csfs-http` instead. This format costs a
+ * request per path level to walk and cannot describe a directory that is not
+ * on disk, so an archive can never stand in for one. It stays only until
+ * inpax, ncsx, nfsx and dashx have moved off `@emdzej/bimmerz-vfs`; it is the
+ * only thing that still reads an `index.json`.
  */
 import { existsSync } from 'node:fs';
 import { readFile, readdir, stat, lstat, writeFile } from 'node:fs/promises';
@@ -48,7 +55,8 @@ interface IndexSummary {
 
 export const indexCommand = new Command('index')
   .description(
-    'Recursively write an index.json in each directory listing its entries.',
+    'Recursively write an index.json in each directory listing its entries. ' +
+      '(Superseded by `bimmerz data manifest`.)',
   )
   .argument('<dir>', 'Directory to index')
   .option(
@@ -70,6 +78,14 @@ export const indexCommand = new Command('index')
       if (!rootStat.isDirectory()) {
         throw new Error(`Not a directory: ${root}`);
       }
+
+      process.stderr.write(
+        chalk.yellow(
+          'note: `data index` is superseded by `data manifest`, which writes one\n' +
+            '      flat csfs-manifest.json for @emdzej/csfs-http. Use that unless the\n' +
+            '      consumer still reads this tree through @emdzej/bimmerz-vfs.\n\n',
+        ),
+      );
 
       const matcher = await buildMatcher(root, opts.ignore);
 
