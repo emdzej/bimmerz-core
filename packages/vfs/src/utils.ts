@@ -6,6 +6,10 @@ import type { VirtualDirectory, VirtualEntry } from './types.js';
  *
  * @example
  * const cfgdat = await drillPath(root, 'EC-APPS', 'INPA', 'CFGDAT');
+ *
+ * @deprecated Use `resolveDirectory(root, 'EC-APPS/INPA/CFGDAT')` from
+ * `@emdzej/csfs-core`. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
  */
 export async function drillPath(
   root: VirtualDirectory,
@@ -25,6 +29,10 @@ export async function drillPath(
  * (matched case-insensitively, leading dot required, e.g. `".ipo"`).
  *
  * Returns lightweight entry objects — call `dir.file(name)` to open one.
+ *
+ * @deprecated csfs has no equivalent by design; filter `entries()` yourself, or
+ * use `walk()` from `@emdzej/csfs-core` for a whole subtree. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
  */
 export async function listFiles(
   dir: VirtualDirectory,

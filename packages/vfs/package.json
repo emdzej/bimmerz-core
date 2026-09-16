@@ -1,8 +1,9 @@
 {
   "name": "@emdzej/bimmerz-vfs",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "type": "module",
-  "description": "Read-only virtual file system abstraction for bimmerz tools — same interface over local File System Access API, remote HTTP index.json trees, and an OPFS / IndexedDB cache layer for the HTTP backend.",
+  "description": "DEPRECATED \u2014 use @emdzej/csfs-* instead (MIT). Read-only virtual file system abstraction for bimmerz tools: one interface over the local File System Access API, remote HTTP index.json trees, and an OPFS / IndexedDB cache layer for the HTTP backend.",
+  "deprecated": "Superseded by @emdzej/csfs-* (MIT, where this is PolyForm Noncommercial). See https://github.com/emdzej/csfs",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {

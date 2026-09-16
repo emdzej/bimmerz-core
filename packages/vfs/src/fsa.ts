@@ -1,5 +1,10 @@
 import type { VirtualFile, VirtualDirectory, VirtualEntry } from './types.js';
 
+/**
+ * @deprecated Use `@emdzej/csfs-fsa`, whose files are `Blob`-backed so a slice
+ * of a 945 MB archive reads only the slice. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export class FsaFile implements VirtualFile {
   readonly name: string;
   readonly size: number;
@@ -18,6 +23,13 @@ export class FsaFile implements VirtualFile {
   }
 }
 
+/**
+ * @deprecated Use `@emdzej/csfs-fsa`:
+ * `(await fsaFileSystem(handle, { caseInsensitive: true }).directory('/'))`.
+ * It also handles permissions (`queryAccess`/`requestAccess`) and can write.
+ * Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export class FsaDirectory implements VirtualDirectory {
   readonly name: string;
   readonly #handle: FileSystemDirectoryHandle;

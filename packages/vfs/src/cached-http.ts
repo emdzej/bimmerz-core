@@ -126,7 +126,16 @@ function getBackend(
 
 /* ── CachedHttpFile ────────────────────────────────────────────── */
 
-/** `VirtualFile` backed by a cache lookup + conditional fetch. */
+/**
+ * `VirtualFile` backed by a cache lookup + conditional fetch.
+ *
+ * @deprecated No csfs equivalent, deliberately. `httpFileSystem` accepts an
+ * injected `fetch`, so caching belongs in a decorator over that rather than in
+ * a backend. For offline use, import the tree into OPFS once with
+ * `@emdzej/csfs-opfs` — no network and no permission prompt afterwards.
+ * Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export class CachedHttpFile implements VirtualFile {
   readonly name: string;
   readonly size: number;
@@ -237,6 +246,11 @@ export class CachedHttpFile implements VirtualFile {
 
 /* ── CachedHttpDirectory ───────────────────────────────────────── */
 
+/**
+ * @deprecated See `CachedHttpFile`. Import into OPFS with `@emdzej/csfs-opfs`,
+ * or wrap the `fetch` you pass to `httpFileSystem`. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export class CachedHttpDirectory implements VirtualDirectory, CacheControl {
   readonly name: string;
   readonly #baseUrl: string;

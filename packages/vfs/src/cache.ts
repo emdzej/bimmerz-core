@@ -433,8 +433,14 @@ export interface OpenCacheOptions {
   prefer?: 'opfs' | 'idb' | 'memory';
 }
 
-/** Pick the best available backend at runtime. Returns the
- *  preferred one if it works, otherwise walks the fallback chain. */
+/**
+ * Pick the best available backend at runtime. Returns the preferred one if it
+ * works, otherwise walks the fallback chain.
+ *
+ * @deprecated Part of the cache layer csfs does not carry. Use
+ * `@emdzej/csfs-opfs` to hold a tree locally instead. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export async function openCacheBackend(options: OpenCacheOptions): Promise<CacheBackend> {
   const order: Array<'opfs' | 'idb' | 'memory'> =
     options.prefer

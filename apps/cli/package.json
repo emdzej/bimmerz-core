@@ -1,7 +1,7 @@
 {
   "name": "@emdzej/bimmerz-cli",
-  "version": "0.1.0",
-  "description": "bimmerz CLI — bundle and index BMW INPA/EDIABAS/NCS installs for web tools.",
+  "version": "0.2.0",
+  "description": "bimmerz CLI \u2014 bundle and index BMW INPA/EDIABAS/NCS installs for web tools.",
   "type": "module",
   "bin": {
     "bimmerz": "dist/index.js"

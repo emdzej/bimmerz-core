@@ -25,6 +25,11 @@ export interface HttpDirectoryOptions {
   fetch?: typeof globalThis.fetch;
 }
 
+/**
+ * @deprecated Use `@emdzej/csfs-http`, which reads by `Range` rather than
+ * downloading the whole file per lookup. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export class HttpFile implements VirtualFile {
   readonly name: string;
   readonly size: number;
@@ -50,6 +55,14 @@ export class HttpFile implements VirtualFile {
   }
 }
 
+/**
+ * @deprecated Use `@emdzej/csfs-http`:
+ * `(await httpFileSystem(url, { caseInsensitive: true }).directory('/'))`.
+ * It reads one flat `csfs-manifest.json` instead of an `index.json` per
+ * directory, so a lookup costs one fetch rather than one per path level —
+ * write it with `bimmerz data manifest`. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export class HttpDirectory implements VirtualDirectory {
   readonly name: string;
   readonly #baseUrl: string;

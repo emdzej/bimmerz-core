@@ -1,4 +1,10 @@
-/** A readable file in the virtual FS. */
+/**
+ * A readable file in the virtual FS.
+ *
+ * @deprecated Use `CsFile` from `@emdzej/csfs-core`. It is `Blob`-shaped, so it
+ * also offers `slice`, `stream`, `text` and a MIME `type`. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export interface VirtualFile {
   /** Original-cased full basename, e.g. `"MS43.IPO"`. */
   readonly name: string;
@@ -7,7 +13,13 @@ export interface VirtualFile {
   arrayBuffer(): Promise<ArrayBuffer>;
 }
 
-/** A read-only directory in the virtual FS. */
+/**
+ * A read-only directory in the virtual FS.
+ *
+ * @deprecated Use `CsDirectory` from `@emdzej/csfs-core`. Note `dir(name)` is
+ * called `directory(name)` there. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export interface VirtualDirectory {
   /** Original-cased directory name. */
   readonly name: string;
@@ -31,6 +43,11 @@ export interface VirtualDirectory {
   entries(): Promise<VirtualEntry[]>;
 }
 
+/**
+ * @deprecated Use `CsEntry` from `@emdzej/csfs-core`. Its directory kind is
+ * `"directory"` rather than `"dir"`. Superseded by [csfs](https://github.com/emdzej/csfs) — MIT, where this is
+ * PolyForm Noncommercial.
+ */
 export type VirtualEntry =
   | { kind: 'file'; name: string; size: number }
   | { kind: 'dir'; name: string };
